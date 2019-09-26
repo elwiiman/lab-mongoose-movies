@@ -27,21 +27,32 @@ router.get("/celebrities/:id", (req, res) => {
     .catch(err => console.log(err));
 });
 
-router.get("/celebrities/new", (req, res) => {
-  res.render("/celebrities/new");
+router.get("/celebrities-new", (req, res) => {
+  res.render("celebrities/new");
 });
 
 router.post("/celebrities", (req, res) => {
-  console.log("req.body this time is:", req.body);
+  // console.log("req.body this time is:", req.body);
   let celebrity = { ...req.body };
   console.log("THIS IS A CELEBRITY:", celebrity);
   Celebrity.create(celebrity)
     .then(() => {
-      res.redirect("/celebrities/index");
+      res.redirect("/celebrities");
     })
-    .catch(() => {
-      res.render("celebrities/new");
+    .catch(err => {
+      // res.render("celebrities-new");
+      console.log(err);
     });
+});
+
+router.post("/celebrities/:id/delete", (req, res) => {
+  let { id } = req.params;
+
+  Celebrity.findByIdAndRemove(id)
+    .then(() => {
+      res.redirect("/celebrities");
+    })
+    .catch(err => console.log(err));
 });
 
 module.exports = router;
