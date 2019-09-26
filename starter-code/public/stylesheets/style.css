@@ -6,4 +6,16 @@ a {
   color: #00b7ff;
   padding: 2%; }
 
+.celeb-container {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  border-bottom: 1px solid gray; }
+
+.btn {
+  margin: 10%; }
+
+.btn-form {
+  margin: 1%; }
+
 /*# sourceMappingURL=style.css.map */

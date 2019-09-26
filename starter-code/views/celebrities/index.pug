@@ -4,8 +4,10 @@ block content
   a(href="/") HOME
   h2 These are all the celebrities saved in DB.
   each celebritie in celebrities
-   ul
-    a(href=`/celebrities/${celebritie._id}`)
-      li #{celebritie.name}
-      form(action=`celebrities/${celebritie._id}/delete` method="POST")
-        button(type="submit") Delete
+    div(class="celeb-container")
+      a(href=`/celebrities/${celebritie._id}`)
+        li #{celebritie.name}
+      form(class="btn-form" action=`celebrities/${celebritie._id}/delete` method="POST")
+        button(class="btn" type="submit") Delete
+      form(class="btn-form" action=`/celebrities/${celebritie._id}/edit` method="GET")
+        button(class="btn" type="submit") Edit

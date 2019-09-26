@@ -1,0 +1,16 @@
+extends ../layout
+
+block content 
+
+  h2 EDIT a Celeb
+  form(action=`/celebrities/${celebrity._id}` method="POST")
+    div
+      label(for="name") Name: 
+      input(id="name" type="text" name="name" value=celebrity.name)
+    div
+      label(for="occupation") Occupation:
+      input(id="occupation" type="text" name="occupation" value=celebrity.occupation)
+    div
+      label(for="catchPhrase") Phrase:
+      input(id="catchPhrase" type="text" name="catchPhrase" value=celebrity.catchPhrase)        
+    button(type="submit") Finish Edition

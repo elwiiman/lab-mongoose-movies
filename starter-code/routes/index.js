@@ -27,6 +27,16 @@ router.get("/celebrities/:id", (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.post("/celebrities/:id", (req, res) => {
+  let celebrity = { ...req.body };
+  let { id } = req.params;
+  Celebrity.findByIdAndUpdate(id, { $set: celebrity })
+    .then(() => {
+      res.redirect("/celebrities");
+    })
+    .catch(err => console.log(err));
+});
+
 router.get("/celebrities-new", (req, res) => {
   res.render("celebrities/new");
 });
@@ -53,6 +63,18 @@ router.post("/celebrities/:id/delete", (req, res) => {
       res.redirect("/celebrities");
     })
     .catch(err => console.log(err));
+});
+
+router.get("/celebrities/:id/edit", (req, res) => {
+  let { id } = req.params;
+  Celebrity.findById(id)
+    .then(celebrity => {
+      console.log("TO EDIT:", celebrity);
+      res.render("celebrities/edit", { title: "edit", celebrity });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 module.exports = router;
